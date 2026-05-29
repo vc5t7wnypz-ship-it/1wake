@@ -1,0 +1,293 @@
+{
+  "page": 3,
+  "annotations": [
+    {
+      "line": 1,
+      "surface": "riverrun",
+      "languages": ["en", "it", "non", "la"],
+      "roots": [
+        {
+          "language": "en",
+          "form": "river",
+          "gloss": "a natural watercourse flowing to the sea or a lake",
+          "confidence": 1.0
+        },
+        {
+          "language": "en",
+          "form": "run",
+          "gloss": "to flow, to move continuously",
+          "confidence": 1.0
+        },
+        {
+          "language": "it",
+          "form": "rivo",
+          "gloss": "stream, brook, small watercourse",
+          "confidence": 0.9
+        },
+        {
+          "language": "non",
+          "form": "runa",
+          "gloss": "mystery, secret, whispered counsel",
+          "confidence": 0.7
+        },
+        {
+          "language": "la",
+          "form": "rivus",
+          "gloss": "stream, brook, channel of water",
+          "confidence": 0.85
+        }
+      ],
+      "semantic_fields": ["water", "flow", "cycle", "beginning", "ALP"],
+      "vico_cycle": 4,
+      "kabbalah_sefirah": null,
+      "cross_references": ["Anna Livia Plurabelle", "Liffey", "ricorso", "end_628"],
+      "notes": "Opening word of the Wake, completing the broken sentence from p.628. Vico's ricorso: the river's return enacts the cyclical theory of history. The compound collapses river (en) and runa (non: mystery) — the Wake's own mystery is waterborne."
+    },
+    {
+      "line": 1,
+      "surface": "past",
+      "languages": ["en", "la", "fr"],
+      "roots": [
+        {
+          "language": "en",
+          "form": "past",
+          "gloss": "gone by in time; beyond in space",
+          "confidence": 1.0
+        },
+        {
+          "language": "la",
+          "form": "passus",
+          "gloss": "step, pace; having suffered, undergone",
+          "confidence": 0.85
+        },
+        {
+          "language": "fr",
+          "form": "passé",
+          "gloss": "past, gone, elapsed",
+          "confidence": 0.8
+        }
+      ],
+      "semantic_fields": ["time", "movement", "cycle", "fall"],
+      "vico_cycle": 1,
+      "kabbalah_sefirah": null,
+      "cross_references": ["Vico", "theocratic_age"],
+      "notes": "La 'passus' carries both the spatial sense (pace, stride) and the participial sense of suffering (cf. Passion). The Viconian first age begins with a fall past the threshold of divine thunder."
+    },
+    {
+      "line": 1,
+      "surface": "Eve",
+      "languages": ["en", "he", "ga"],
+      "roots": [
+        {
+          "language": "en",
+          "form": "Eve",
+          "gloss": "the first woman; biblical mother of humanity",
+          "confidence": 1.0
+        },
+        {
+          "language": "he",
+          "form": "Chavah",
+          "gloss": "life, living; the Hebrew name of Eve",
+          "confidence": 0.95
+        },
+        {
+          "language": "ga",
+          "form": "Éabha",
+          "gloss": "Irish form of Eve; also a variant of the name Aoife",
+          "confidence": 0.85
+        }
+      ],
+      "semantic_fields": ["ALP", "woman", "origin", "HCE_motif", "garden"],
+      "vico_cycle": 1,
+      "kabbalah_sefirah": "Binah",
+      "cross_references": ["ALP", "Anna Livia", "HCE", "Adam_and_Eve_church"],
+      "notes": "Eve and Adam inverted from Genesis order. He 'Chavah' (life) links Eve to Anna Livia Plurabelle as the life-giving river. The Church of Adam and Eve (Merchant's Quay, Dublin) stands on the south bank of the Liffey."
+    },
+    {
+      "line": 1,
+      "surface": "Adam",
+      "languages": ["en", "he", "ar"],
+      "roots": [
+        {
+          "language": "en",
+          "form": "Adam",
+          "gloss": "the first man; biblical progenitor",
+          "confidence": 1.0
+        },
+        {
+          "language": "he",
+          "form": "adamah",
+          "gloss": "earth, ground, red clay; the substance from which Adam was formed",
+          "confidence": 0.95
+        },
+        {
+          "language": "he",
+          "form": "adom",
+          "gloss": "red; cognate with adamah and edom",
+          "confidence": 0.8
+        },
+        {
+          "language": "ar",
+          "form": "adim",
+          "gloss": "surface of the earth, skin",
+          "confidence": 0.6
+        }
+      ],
+      "semantic_fields": ["HCE", "man", "origin", "earth", "fall"],
+      "vico_cycle": 1,
+      "kabbalah_sefirah": "Malkuth",
+      "cross_references": ["HCE", "Here Comes Everybody", "Adam_and_Eve_church", "Earwicker"],
+      "notes": "He 'adamah' (earth/red clay) grounds HCE in the material world; Malkuth is the lowest sefirah, the Kingdom, the earthly realm. The inversion Eve-Adam-Adam-Eve enacts the cyclical chiasmus fundamental to the Wake's structure."
+    },
+    {
+      "line": 3,
+      "surface": "swerve",
+      "languages": ["en", "non", "de"],
+      "roots": [
+        {
+          "language": "en",
+          "form": "swerve",
+          "gloss": "to deviate suddenly from a straight course",
+          "confidence": 1.0
+        },
+        {
+          "language": "non",
+          "form": "sverfa",
+          "gloss": "to file, to abrade, to wear away by friction",
+          "confidence": 0.75
+        },
+        {
+          "language": "de",
+          "form": "schwirren",
+          "gloss": "to whirr, to buzz, to move rapidly with a vibrating motion",
+          "confidence": 0.65
+        },
+        {
+          "language": "la",
+          "form": "clinamen",
+          "gloss": "the Epicurean swerve of atoms; Lucretian deviation from determinism",
+          "confidence": 0.7
+        }
+      ],
+      "semantic_fields": ["movement", "deviation", "shore", "Lucretius", "indeterminacy"],
+      "vico_cycle": null,
+      "kabbalah_sefirah": null,
+      "cross_references": ["clinamen", "Lucretius", "De Rerum Natura", "shore"],
+      "notes": "The Lucretian clinamen (atomic swerve) underlies the English sense. Non 'sverfa' (to file/abrade) suggests the river wearing at the shoreline. The swerve is both geographic (the river's bend) and philosophical (the deviation that makes free will possible)."
+    },
+    {
+      "line": 5,
+      "surface": "wielderfight",
+      "languages": ["en", "de", "ga"],
+      "roots": [
+        {
+          "language": "en",
+          "form": "wield",
+          "gloss": "to handle or use with skill, especially a weapon",
+          "confidence": 1.0
+        },
+        {
+          "language": "en",
+          "form": "fight",
+          "gloss": "to engage in battle or combat",
+          "confidence": 1.0
+        },
+        {
+          "language": "de",
+          "form": "wieder",
+          "gloss": "again, once more; prefix expressing repetition",
+          "confidence": 0.9
+        },
+        {
+          "language": "de",
+          "form": "Weltkrieg",
+          "gloss": "world war; global conflict",
+          "confidence": 0.6
+        },
+        {
+          "language": "ga",
+          "form": "fíoch",
+          "gloss": "fury, rage, fierce anger in battle",
+          "confidence": 0.75
+        }
+      ],
+      "semantic_fields": ["conflict", "repetition", "war", "cycle", "HCE_fall"],
+      "vico_cycle": 2,
+      "kabbalah_sefirah": "Gevurah",
+      "cross_references": ["Waterloo", "HCE_sin", "Wellington_Monument", "Prankquean"],
+      "notes": "De 'wieder' (again) activates the Viconian return: battles recur. 'Wielderfight' echoes Waterloo (Wellington/Napoleon), the central HCE sin-myth. Gevurah (Strength/Judgement) is the sefirah of power and severity in combat."
+    },
+    {
+      "line": 2,
+      "surface": "commodius",
+      "languages": ["la", "en"],
+      "roots": [
+        {
+          "language": "la",
+          "form": "commodus",
+          "gloss": "convenient, suitable, advantageous, comfortable",
+          "confidence": 1.0
+        },
+        {
+          "language": "la",
+          "form": "Commodus",
+          "gloss": "Roman emperor AD 177–192; known for vanity and gladiatorial excess",
+          "confidence": 0.9
+        },
+        {
+          "language": "en",
+          "form": "commodious",
+          "gloss": "roomy, spacious, affording ample room",
+          "confidence": 0.95
+        },
+        {
+          "language": "la",
+          "form": "commode",
+          "gloss": "a chest of drawers; a toilet (later French derivative)",
+          "confidence": 0.5
+        }
+      ],
+      "semantic_fields": ["Rome", "Vico", "cycle", "convenience", "empire", "lavatory"],
+      "vico_cycle": 2,
+      "kabbalah_sefirah": null,
+      "cross_references": ["Vico_road", "Vicus_of_recirculation", "Roman_empire", "Commodus"],
+      "notes": "La 'commodus' puns on Vico Road (Dalkey, Dublin) and on the Viconian cyclical system. Emperor Commodus represents aristocratic overreach and imperial decadence (Vico cycle 2 → 3 transition). The scatological overtone (commode) is consistent with Joyce's earthward humour."
+    },
+    {
+      "line": 3,
+      "surface": "Howth",
+      "languages": ["en", "ga", "non"],
+      "roots": [
+        {
+          "language": "en",
+          "form": "Howth",
+          "gloss": "headland peninsula north of Dublin Bay; Howth Head",
+          "confidence": 1.0
+        },
+        {
+          "language": "ga",
+          "form": "Beann Éadair",
+          "gloss": "Éadar's peak; the Irish name for Howth Head",
+          "confidence": 1.0
+        },
+        {
+          "language": "non",
+          "form": "Hovud",
+          "gloss": "head; the Norse name giving rise to the anglicised Howth",
+          "confidence": 0.95
+        },
+        {
+          "language": "non",
+          "form": "hǫfuð",
+          "gloss": "head (of the body); headland, promontory",
+          "confidence": 0.9
+        }
+      ],
+      "semantic_fields": ["Dublin", "geography", "HCE", "giant", "landscape_as_body"],
+      "vico_cycle": null,
+      "kabbalah_sefirah": "Kether",
+      "cross_references": ["HCE", "Finn_MacCool", "giant_sleeping", "Dublin_Bay", "Castle"],
+      "notes": "Howth Castle and Environs (HCE) = initials of the protagonist Here Comes Everybody / Humphrey Chimpden Earwicker. The sleeping giant (Finn MacCool) lies with his head at Howth, his feet at the Phoenix Park. Non 'hǫfuð' (head) links to Kether (Crown), the highest sefirah, the divine head."
+    }
+  ]
+}

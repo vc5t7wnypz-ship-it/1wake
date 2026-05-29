@@ -1,0 +1,555 @@
+{
+  "river": {
+    "confidence": 0.95,
+    "language": "en",
+    "meaning": "a natural watercourse flowing to the sea or a lake",
+    "period": "Middle English",
+    "cognates": ["rivus", "rivo", "rivière"]
+  },
+  "run": {
+    "confidence": 0.90,
+    "language": "en",
+    "meaning": "to flow, to move continuously in a stream",
+    "period": "Old English",
+    "cognates": ["rinnan", "rinna", "rennen"]
+  },
+  "rune": {
+    "confidence": 0.85,
+    "language": "non",
+    "meaning": "secret character, mystery, whispered counsel",
+    "period": "Old Norse",
+    "cognates": ["runa", "run", "Rune"]
+  },
+  "past": {
+    "confidence": 0.95,
+    "language": "en",
+    "meaning": "gone by in time; beyond in space",
+    "period": "Middle English",
+    "cognates": ["passus", "passé", "passato"]
+  },
+  "Eve": {
+    "confidence": 0.95,
+    "language": "he",
+    "meaning": "life, the living one; mother of humanity",
+    "period": "Biblical Hebrew",
+    "cognates": ["Chavah", "Éabha", "Hawa"]
+  },
+  "Adam": {
+    "confidence": 0.95,
+    "language": "he",
+    "meaning": "earth, red clay; the first man formed from soil",
+    "period": "Biblical Hebrew",
+    "cognates": ["adamah", "adom", "adim"]
+  },
+  "Howth": {
+    "confidence": 0.95,
+    "language": "non",
+    "meaning": "headland promontory north of Dublin Bay",
+    "period": "Old Norse",
+    "cognates": ["hǫfuð", "Hovud", "Beann Éadair"]
+  },
+  "head": {
+    "confidence": 0.95,
+    "language": "en",
+    "meaning": "the uppermost part of the body; a promontory",
+    "period": "Old English",
+    "cognates": ["heafod", "haupt", "caput"]
+  },
+  "cast": {
+    "confidence": 0.90,
+    "language": "en",
+    "meaning": "to throw; to shed; a bend in a river or road",
+    "period": "Old Norse via Middle English",
+    "cognates": ["kasta", "casten", "werfen"]
+  },
+  "swerve": {
+    "confidence": 0.90,
+    "language": "en",
+    "meaning": "to deviate suddenly from a straight course",
+    "period": "Middle English",
+    "cognates": ["sverfa", "schwirren", "clinamen"]
+  },
+  "long": {
+    "confidence": 0.90,
+    "language": "en",
+    "meaning": "extending for a great distance; to yearn for",
+    "period": "Old English",
+    "cognates": ["lang", "lungo", "longus"]
+  },
+  "shore": {
+    "confidence": 0.90,
+    "language": "en",
+    "meaning": "land along the edge of a sea, lake, or river",
+    "period": "Middle English",
+    "cognates": ["schor", "schore", "lido"]
+  },
+  "bend": {
+    "confidence": 0.90,
+    "language": "en",
+    "meaning": "a curve or deviation in a river or road",
+    "period": "Old English",
+    "cognates": ["biegung", "courbe", "curvus"]
+  },
+  "bay": {
+    "confidence": 0.90,
+    "language": "en",
+    "meaning": "a broad inlet of the sea or a lake",
+    "period": "Middle English via French",
+    "cognates": ["baie", "bahía", "baía"]
+  },
+  "double": {
+    "confidence": 0.90,
+    "language": "en",
+    "meaning": "consisting of two equal or similar parts; to fold",
+    "period": "Middle English via Old French",
+    "cognates": ["doble", "doppel", "duplex"]
+  },
+  "vicus": {
+    "confidence": 0.95,
+    "language": "la",
+    "meaning": "a street, quarter of a town, village; Vico Road Dalkey",
+    "period": "Classical Latin",
+    "cognates": ["vico", "village", "wick"]
+  },
+  "recirculation": {
+    "confidence": 0.90,
+    "language": "en",
+    "meaning": "the act of circulating again; Viconian ricorso",
+    "period": "Modern English",
+    "cognates": ["ricorso", "recirculare", "Wiederkehr"]
+  },
+  "commodius": {
+    "confidence": 0.95,
+    "language": "la",
+    "meaning": "convenient, suitable; Emperor Commodus; commodious",
+    "period": "Classical Latin",
+    "cognates": ["commodious", "commode", "Commodus"]
+  },
+  "vicorium": {
+    "confidence": 0.85,
+    "language": "la",
+    "meaning": "of or pertaining to Vico; Vico's system of historical cycles",
+    "period": "Neo-Latin",
+    "cognates": ["vicus", "Vico", "vicinal"]
+  },
+  "Finn": {
+    "confidence": 0.95,
+    "language": "ga",
+    "meaning": "fair, bright; Fionn Mac Cumhaill, the sleeping giant",
+    "period": "Old Irish",
+    "cognates": ["Fionn", "finn", "fionn"]
+  },
+  "anna": {
+    "confidence": 0.90,
+    "language": "he",
+    "meaning": "grace, favour; Anna Livia Plurabelle",
+    "period": "Biblical Hebrew",
+    "cognates": ["Hannah", "Ana", "Áine"]
+  },
+  "liff": {
+    "confidence": 0.90,
+    "language": "non",
+    "meaning": "the River Liffey, Dublin; life-giving water",
+    "period": "Old Norse via Irish",
+    "cognates": ["life", "lif", "Liffey"]
+  },
+  "plurabelle": {
+    "confidence": 0.85,
+    "language": "la",
+    "meaning": "more beautiful; plus belle; Anna Livia's epithet",
+    "period": "Joyce's coinage from Latin/French",
+    "cognates": ["pluralis", "belle", "bellissima"]
+  },
+  "ambi": {
+    "confidence": 0.90,
+    "language": "la",
+    "meaning": "both, on both sides; prefix of duality",
+    "period": "Classical Latin",
+    "cognates": ["amphi", "ambos", "ambo"]
+  },
+  "velour": {
+    "confidence": 0.85,
+    "language": "fr",
+    "meaning": "velvet; a soft fabric with a nap surface",
+    "period": "Modern French",
+    "cognates": ["velours", "velluto", "velvet"]
+  },
+  "nicht": {
+    "confidence": 0.90,
+    "language": "de",
+    "meaning": "not; negation particle in German",
+    "period": "Modern German",
+    "cognates": ["nicht", "nicht", "nein"]
+  },
+  "wacht": {
+    "confidence": 0.85,
+    "language": "de",
+    "meaning": "watch, guard, vigil; watches or waits",
+    "period": "Modern German",
+    "cognates": ["Wacht", "watch", "wachen"]
+  },
+  "auch": {
+    "confidence": 0.90,
+    "language": "de",
+    "meaning": "also, too, likewise; German particle of addition",
+    "period": "Modern German",
+    "cognates": ["auch", "auch", "ebenso"]
+  },
+  "wieder": {
+    "confidence": 0.90,
+    "language": "de",
+    "meaning": "again, once more; prefix expressing repetition",
+    "period": "Modern German",
+    "cognates": ["wieder", "wieder", "di nuovo"]
+  },
+  "gall": {
+    "confidence": 0.90,
+    "language": "ga",
+    "meaning": "foreigner, stranger; specifically Norse invaders of Ireland",
+    "period": "Old Irish",
+    "cognates": ["Gall", "gallus", "Gaill"]
+  },
+  "the": {
+    "confidence": 1.0,
+    "language": "en",
+    "meaning": "definite article; indicating a particular thing",
+    "period": "Old English",
+    "cognates": ["þe", "der/die/das", "le/la"]
+  },
+  "a": {
+    "confidence": 1.0,
+    "language": "en",
+    "meaning": "indefinite article; one, any",
+    "period": "Old English",
+    "cognates": ["an", "ein", "un"]
+  },
+  "and": {
+    "confidence": 1.0,
+    "language": "en",
+    "meaning": "conjunction joining words or clauses",
+    "period": "Old English",
+    "cognates": ["und", "et", "e"]
+  },
+  "of": {
+    "confidence": 1.0,
+    "language": "en",
+    "meaning": "preposition of belonging or relationship",
+    "period": "Old English",
+    "cognates": ["von", "de", "di"]
+  },
+  "in": {
+    "confidence": 1.0,
+    "language": "en",
+    "meaning": "preposition indicating location or state within",
+    "period": "Old English",
+    "cognates": ["in", "en", "in"]
+  },
+  "to": {
+    "confidence": 1.0,
+    "language": "en",
+    "meaning": "preposition indicating direction or purpose",
+    "period": "Old English",
+    "cognates": ["zu", "à", "a"]
+  },
+  "from": {
+    "confidence": 1.0,
+    "language": "en",
+    "meaning": "preposition indicating origin or source",
+    "period": "Old English",
+    "cognates": ["from", "von", "de"]
+  },
+  "his": {
+    "confidence": 1.0,
+    "language": "en",
+    "meaning": "possessive pronoun, third person masculine",
+    "period": "Old English",
+    "cognates": ["sein", "son", "suo"]
+  },
+  "her": {
+    "confidence": 1.0,
+    "language": "en",
+    "meaning": "possessive pronoun, third person feminine",
+    "period": "Old English",
+    "cognates": ["ihr", "sa", "sua"]
+  },
+  "their": {
+    "confidence": 1.0,
+    "language": "en",
+    "meaning": "possessive pronoun, third person plural",
+    "period": "Middle English via Old Norse",
+    "cognates": ["þeirra", "ihr", "leur"]
+  },
+  "our": {
+    "confidence": 1.0,
+    "language": "en",
+    "meaning": "possessive pronoun, first person plural",
+    "period": "Old English",
+    "cognates": ["unser", "notre", "nostro"]
+  },
+  "back": {
+    "confidence": 0.95,
+    "language": "en",
+    "meaning": "toward the rear; to return to an earlier state",
+    "period": "Old English",
+    "cognates": ["bak", "zurück", "retour"]
+  },
+  "again": {
+    "confidence": 0.95,
+    "language": "en",
+    "meaning": "another time; anew; Viconian repetition",
+    "period": "Old English",
+    "cognates": ["ongean", "wieder", "encore"]
+  },
+  "re": {
+    "confidence": 0.90,
+    "language": "la",
+    "meaning": "prefix meaning again, back, anew",
+    "period": "Classical Latin",
+    "cognates": ["re-", "wieder-", "ri-"]
+  },
+  "un": {
+    "confidence": 0.90,
+    "language": "en",
+    "meaning": "prefix meaning not, reversal of an action",
+    "period": "Old English",
+    "cognates": ["un-", "un-", "in-"]
+  },
+  "ever": {
+    "confidence": 0.90,
+    "language": "en",
+    "meaning": "at any time; always; at all times",
+    "period": "Old English",
+    "cognates": ["æfre", "jemals", "jamais"]
+  },
+  "never": {
+    "confidence": 0.90,
+    "language": "en",
+    "meaning": "not at any time; not ever",
+    "period": "Old English",
+    "cognates": ["næfre", "niemals", "jamais"]
+  },
+  "thunder": {
+    "confidence": 0.95,
+    "language": "en",
+    "meaning": "the loud rumbling sound of a storm; divine voice",
+    "period": "Old English",
+    "cognates": ["þunor", "Donner", "tonnerre"]
+  },
+  "water": {
+    "confidence": 0.95,
+    "language": "en",
+    "meaning": "the clear liquid H2O; rivers and seas",
+    "period": "Old English",
+    "cognates": ["wæter", "Wasser", "aqua"]
+  },
+  "sea": {
+    "confidence": 0.95,
+    "language": "en",
+    "meaning": "the expanse of salt water covering much of the earth",
+    "period": "Old English",
+    "cognates": ["sæ", "See", "mare"]
+  },
+  "night": {
+    "confidence": 0.95,
+    "language": "en",
+    "meaning": "the period of darkness between sunset and sunrise",
+    "period": "Old English",
+    "cognates": ["niht", "Nacht", "nox"]
+  },
+  "day": {
+    "confidence": 0.95,
+    "language": "en",
+    "meaning": "the period of light between sunrise and sunset",
+    "period": "Old English",
+    "cognates": ["dæg", "Tag", "dies"]
+  },
+  "fall": {
+    "confidence": 0.90,
+    "language": "en",
+    "meaning": "to drop from a higher place; the Fall of Man; autumn",
+    "period": "Old English",
+    "cognates": ["feallan", "fallen", "cadere"]
+  },
+  "rise": {
+    "confidence": 0.90,
+    "language": "en",
+    "meaning": "to move upward; to ascend; the Viconian ricorso upswing",
+    "period": "Old English",
+    "cognates": ["risan", "risen", "surgere"]
+  },
+  "old": {
+    "confidence": 0.95,
+    "language": "en",
+    "meaning": "having existed for many years; aged; ancient",
+    "period": "Old English",
+    "cognates": ["ald", "alt", "vieux"]
+  },
+  "new": {
+    "confidence": 0.95,
+    "language": "en",
+    "meaning": "recently created or discovered; not yet familiar",
+    "period": "Old English",
+    "cognates": ["niwe", "neu", "nouveau"]
+  },
+  "rivus": {
+    "confidence": 0.90,
+    "language": "la",
+    "meaning": "stream, brook, channel of water",
+    "period": "Classical Latin",
+    "cognates": ["river", "rivo", "rivière"]
+  },
+  "rivo": {
+    "confidence": 0.88,
+    "language": "it",
+    "meaning": "stream, brook, small watercourse",
+    "period": "Italian",
+    "cognates": ["rivus", "river", "rivière"]
+  },
+  "passus": {
+    "confidence": 0.85,
+    "language": "la",
+    "meaning": "step, pace; having suffered or undergone",
+    "period": "Classical Latin",
+    "cognates": ["past", "passé", "paso"]
+  },
+  "Chavah": {
+    "confidence": 0.92,
+    "language": "he",
+    "meaning": "life, the living; the Hebrew name of Eve",
+    "period": "Biblical Hebrew",
+    "cognates": ["Eve", "Hawa", "Éabha"]
+  },
+  "adamah": {
+    "confidence": 0.93,
+    "language": "he",
+    "meaning": "earth, ground, red clay; the soil from which Adam was made",
+    "period": "Biblical Hebrew",
+    "cognates": ["Adam", "adom", "terra"]
+  },
+  "clinamen": {
+    "confidence": 0.85,
+    "language": "la",
+    "meaning": "the Epicurean swerve of atoms; Lucretian deviation from determinism",
+    "period": "Classical Latin",
+    "cognates": ["swerve", "clinare", "inclinare"]
+  },
+  "ricorso": {
+    "confidence": 0.92,
+    "language": "it",
+    "meaning": "recourse, return; Vico's fourth historical stage of renewal",
+    "period": "Modern Italian",
+    "cognates": ["recirculation", "retour", "Rückkehr"]
+  },
+  "Liffey": {
+    "confidence": 0.95,
+    "language": "ga",
+    "meaning": "the River Liffey flowing through Dublin; Anna Livia",
+    "period": "Irish Gaelic",
+    "cognates": ["Life", "liff", "An Life"]
+  },
+  "hǫfuð": {
+    "confidence": 0.90,
+    "language": "non",
+    "meaning": "head of the body; headland, promontory",
+    "period": "Old Norse",
+    "cognates": ["Howth", "head", "caput"]
+  },
+  "runa": {
+    "confidence": 0.88,
+    "language": "non",
+    "meaning": "mystery, secret, whispered counsel; runic character",
+    "period": "Old Norse",
+    "cognates": ["rune", "run", "Rune"]
+  },
+  "commodus": {
+    "confidence": 0.93,
+    "language": "la",
+    "meaning": "convenient, suitable; Emperor Commodus AD 177-192",
+    "period": "Classical Latin",
+    "cognates": ["commodious", "commodius", "commode"]
+  },
+  "fionn": {
+    "confidence": 0.90,
+    "language": "ga",
+    "meaning": "fair, bright, white; name of the legendary hero Fionn Mac Cumhaill",
+    "period": "Old Irish",
+    "cognates": ["Finn", "finn", "blonde"]
+  },
+  "Éabha": {
+    "confidence": 0.85,
+    "language": "ga",
+    "meaning": "Irish form of Eve; also a variant of Aoife",
+    "period": "Modern Irish Gaelic",
+    "cognates": ["Eve", "Chavah", "Hawa"]
+  },
+  "Donner": {
+    "confidence": 0.90,
+    "language": "de",
+    "meaning": "thunder; German for the sound of a storm",
+    "period": "Modern German",
+    "cognates": ["thunder", "þunor", "tonnerre"]
+  },
+  "Nacht": {
+    "confidence": 0.90,
+    "language": "de",
+    "meaning": "night; the period of darkness",
+    "period": "Modern German",
+    "cognates": ["night", "niht", "nox"]
+  },
+  "Wasser": {
+    "confidence": 0.90,
+    "language": "de",
+    "meaning": "water; the clear liquid",
+    "period": "Modern German",
+    "cognates": ["water", "wæter", "aqua"]
+  },
+  "aqua": {
+    "confidence": 0.90,
+    "language": "la",
+    "meaning": "water; a flowing body of water",
+    "period": "Classical Latin",
+    "cognates": ["water", "eau", "agua"]
+  },
+  "mare": {
+    "confidence": 0.90,
+    "language": "la",
+    "meaning": "the sea; any large body of salt water",
+    "period": "Classical Latin",
+    "cognates": ["sea", "mer", "mare"]
+  },
+  "terra": {
+    "confidence": 0.90,
+    "language": "la",
+    "meaning": "earth, ground, land; the world",
+    "period": "Classical Latin",
+    "cognates": ["earth", "terre", "terra"]
+  },
+  "vita": {
+    "confidence": 0.90,
+    "language": "la",
+    "meaning": "life; the span of a living being",
+    "period": "Classical Latin",
+    "cognates": ["life", "vie", "vida"]
+  },
+  "fluvius": {
+    "confidence": 0.88,
+    "language": "la",
+    "meaning": "a river, stream; flowing water",
+    "period": "Classical Latin",
+    "cognates": ["river", "fleuve", "río"]
+  },
+  "anna": {
+    "confidence": 0.90,
+    "language": "he",
+    "meaning": "grace, favour, beautiful; Anna Livia Plurabelle",
+    "period": "Hebrew via Latin",
+    "cognates": ["Hannah", "Ana", "Áine"]
+  },
+  "caput": {
+    "confidence": 0.88,
+    "language": "la",
+    "meaning": "head; the uppermost or chief part; a promontory",
+    "period": "Classical Latin",
+    "cognates": ["head", "chef", "capo"]
+  }
+}

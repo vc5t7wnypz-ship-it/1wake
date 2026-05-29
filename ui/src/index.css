@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-gray-950 text-gray-100;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply bg-gray-900 border border-gray-800 rounded-lg overflow-hidden flex flex-col;
+  }
+
+  .panel-header {
+    @apply px-4 py-2 bg-gray-800 border-b border-gray-700 flex items-center justify-between;
+  }
+
+  .panel-title {
+    @apply text-xs font-mono font-semibold uppercase tracking-widest text-gray-400;
+  }
+
+  .panel-body {
+    @apply flex-1 overflow-hidden;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-sky-600 hover:bg-sky-500 disabled:bg-gray-700 disabled:text-gray-500
+           text-white font-mono text-sm font-medium rounded transition-colors duration-150
+           flex items-center gap-2 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply px-3 py-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-600
+           text-gray-300 font-mono text-xs rounded transition-colors duration-150;
+  }
+
+  .input-field {
+    @apply bg-gray-800 border border-gray-700 text-gray-100 rounded px-3 py-2
+           font-mono text-sm placeholder-gray-500 focus:outline-none focus:border-sky-500
+           focus:ring-1 focus:ring-sky-500 transition-colors duration-150;
+  }
+
+  .chip {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-mono
+           bg-gray-800 border border-gray-700 text-gray-300;
+  }
+}
+
+/* D3 tooltip */
+.d3-tooltip {
+  position: absolute;
+  background: rgba(17, 24, 39, 0.95);
+  border: 1px solid rgba(75, 85, 99, 0.8);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #e5e7eb;
+  pointer-events: none;
+  z-index: 9999;
+  max-width: 240px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  line-height: 1.6;
+}
+
+.d3-tooltip .tt-label {
+  font-weight: 600;
+  color: #38bdf8;
+}
+
+/* Plotly dark overrides */
+.js-plotly-plot .plotly .main-svg {
+  background: transparent !important;
+}
+
+.js-plotly-plot .plotly .bg {
+  fill: transparent !important;
+}
