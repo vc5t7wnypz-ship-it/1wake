@@ -551,5 +551,26 @@
     "meaning": "head; the uppermost or chief part; a promontory",
     "period": "Classical Latin",
     "cognates": ["head", "chef", "capo"]
+  },
+  "nox": {
+    "confidence": 0.88,
+    "language": "la",
+    "meaning": "night; the darkness; Nox the goddess of night",
+    "period": "Classical Latin",
+    "cognates": ["night", "Nacht", "nuit"]
+  },
+  "lux": {
+    "confidence": 0.88,
+    "language": "la",
+    "meaning": "light; enlightenment; the divine light",
+    "period": "Classical Latin",
+    "cognates": ["light", "luce", "lumière"]
+  },
+  "pons": {
+    "confidence": 0.85,
+    "language": "la",
+    "meaning": "bridge; a crossing point; connection",
+    "period": "Classical Latin",
+    "cognates": ["pont", "ponte", "bridge"]
   }
 }

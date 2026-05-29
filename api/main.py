@@ -4,21 +4,26 @@ WAKE Interpretability API — main FastAPI application.
 Exposes endpoints for:
   - Health check
   - Lens catalogue
-  - Single-passage analysis
+  - Single-passage analysis (contrastive multi-lens)
   - Batch analysis
   - Superposition map
+  - Graph queries (node, path, neighbourhood, semantic fields)
+  - Lens composition
 """
 
 from __future__ import annotations
 
 import logging
+import time
 from contextlib import asynccontextmanager
 from typing import Any, AsyncGenerator, Dict, List, Optional
 
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
-from api.state import AppState, app_state
+from .routes import analysis, graph
+from .state import AppState, app_state
 
 logger = logging.getLogger(__name__)
 
@@ -33,11 +38,16 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     logger.info("WAKE API starting up …")
     try:
         await app_state.initialize()
+        logger.info(
+            "Startup complete.  Lenses available: %s",
+            app_state.available_lenses,
+        )
     except Exception as exc:  # noqa: BLE001
         logger.warning("AppState.initialize() raised %s — continuing in degraded mode.", exc)
     yield
     logger.info("WAKE API shutting down …")
     await app_state.shutdown()
+    logger.info("Shutdown complete.")
 
 
 # ---------------------------------------------------------------------------
@@ -48,195 +58,89 @@ app = FastAPI(
     title="WAKE Interpretability API",
     description=(
         "Mechanistic interpretability of Finnegans Wake: "
-        "superposed meaning in LLM residual streams."
+        "superposed meaning in LLM residual streams.\n\n"
+        "Run contrastive multi-lens analysis on Wake passages, inspect "
+        "residual-stream geometry, trace attention-head functions, and "
+        "query the Wake knowledge graph."
     ),
     version="0.1.0",
-    docs_url="/api/wake/docs",
-    openapi_url="/api/wake/openapi.json",
+    docs_url="/docs",
+    openapi_url="/openapi.json",
     lifespan=lifespan,
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:3000",   # React / Next.js dev server
+        "http://localhost:8080",   # alternative frontend port
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:8080",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# ---------------------------------------------------------------------------
-# Health endpoint
-# ---------------------------------------------------------------------------
-
-
-@app.get(
-    "/api/wake/health",
-    summary="Health check",
-    tags=["system"],
-)
-async def health() -> Dict[str, Any]:
-    """Return the current health status of the API and its subsystems.
-
-    Returns
-    -------
-    dict
-        - ``status``: ``"ok"`` when all subsystems are available;
-          ``"degraded"`` when some are unavailable.
-        - ``model``: ``"loaded"`` | ``"not_loaded"``
-        - ``graph``: ``"connected"`` | ``"not_connected"``
-        - ``lenses``: list of available lens names
-        - ``probes``: list of available probe layer indices
-    """
-    return {
-        "status": "ok" if app_state.is_ready else "degraded",
-        "model": "loaded" if app_state.model is not None else "not_loaded",
-        "graph": "connected" if app_state.graph is not None else "not_connected",
-        "lenses": app_state.available_lenses,
-        "probes": sorted(app_state.probes.keys()),
-    }
-
 
 # ---------------------------------------------------------------------------
-# Lens catalogue endpoint
+# Request-logging middleware
 # ---------------------------------------------------------------------------
 
+@app.middleware("http")
+async def request_logging_middleware(request: Request, call_next):  # type: ignore[no-untyped-def]
+    """Log each request with its method, path, client IP, and elapsed time."""
+    start = time.perf_counter()
+    client_host = request.client.host if request.client else "unknown"
+    logger.info("→ %s %s  client=%s", request.method, request.url.path, client_host)
 
-@app.get(
-    "/api/wake/lenses",
-    summary="List available lenses",
-    tags=["lenses"],
-)
-async def list_lenses() -> List[Dict[str, Any]]:
-    """Return metadata for all registered WAKE lenses.
-
-    Each entry includes the lens name, a short description derived from
-    its system prompt, the foregrounded semantic fields, and the probe
-    targets.
-
-    Returns
-    -------
-    list[dict]
-        One dict per registered lens.
-    """
     try:
-        from lenses.registry import ALL_LENSES
-
-        results: List[Dict[str, Any]] = []
-        for name, cls in sorted(ALL_LENSES.items()):
-            try:
-                instance = cls()
-                config = instance.config
-                # Extract first line of system prompt as description.
-                first_line = config.system_prompt.strip().splitlines()[0] if config.system_prompt else ""
-                results.append({
-                    "name": config.name,
-                    "description": first_line,
-                    "foregrounded_fields": config.foregrounded_fields,
-                    "probe_targets": config.probe_targets,
-                    "attention_priors": config.attention_priors,
-                })
-            except Exception as exc:  # noqa: BLE001
-                results.append({"name": name, "error": str(exc)})
-        return results
-    except ImportError:
-        raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="Lens registry not available.",
+        response = await call_next(request)
+        elapsed = time.perf_counter() - start
+        logger.info(
+            "← %s %s  status=%d  elapsed=%.3fs",
+            request.method,
+            request.url.path,
+            response.status_code,
+            elapsed,
         )
-
-
-# ---------------------------------------------------------------------------
-# Analysis endpoint
-# ---------------------------------------------------------------------------
-
-
-@app.post(
-    "/api/wake/analyse",
-    summary="Analyse a Wake passage",
-    tags=["analysis"],
-)
-async def analyse_passage(body: Dict[str, Any]) -> Dict[str, Any]:
-    """Run a Wake passage through the multi-pass runner under all lenses.
-
-    Request body
-    ------------
-    ``passage`` (str, required):
-        The Wake text to analyse.
-    ``page`` (int, default 3):
-        Source page number.
-    ``line`` (int, default 1):
-        Source line number.
-    ``lenses`` (list[str], optional):
-        Names of lenses to use.  Defaults to all registered lenses.
-    ``layers_to_capture`` (list[int], optional):
-        Model layers from which to capture residual-stream activations.
-
-    Returns
-    -------
-    dict
-        Serialised :class:`~engine.multipass.runner.ContrastiveResult`.
-    """
-    if app_state.runner is None:
-        raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="Model not loaded.  Set MODEL_NAME env var to enable analysis.",
-        )
-
-    passage: str = body.get("passage", "")
-    if not passage:
-        raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail="'passage' is required.",
-        )
-
-    page: int = int(body.get("page", 3))
-    line: int = int(body.get("line", 1))
-    layers_to_capture: Optional[List[int]] = body.get("layers_to_capture")
-
-    # Tokenise passage
-    wake_tokens: List[Any] = []
-    if app_state.tokenizer is not None:
-        try:
-            wake_tokens = app_state.tokenizer.tokenize(passage, page=page, line=line)
-        except Exception as exc:  # noqa: BLE001
-            logger.warning("Tokenizer failed on passage: %s", exc)
-
-    # Run analysis
-    try:
-        import asyncio
-
-        result = await asyncio.to_thread(
-            app_state.runner.run,
-            passage=passage,
-            wake_tokens=wake_tokens,
-            page=page,
-            line=line,
-            layers_to_capture=layers_to_capture,
-        )
+        return response
     except Exception as exc:
-        logger.exception("Analysis failed: %s", exc)
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Analysis error: {exc}",
+        elapsed = time.perf_counter() - start
+        logger.error(
+            "✗ %s %s  error=%s  elapsed=%.3fs",
+            request.method,
+            request.url.path,
+            exc,
+            elapsed,
+        )
+        return JSONResponse(
+            status_code=500,
+            content={"detail": f"Internal server error: {exc}"},
         )
 
-    # Serialise (arrays → lists already handled in ContrastiveResult)
+
+# ---------------------------------------------------------------------------
+# Routers from the routes sub-package
+# ---------------------------------------------------------------------------
+
+app.include_router(analysis.router)
+app.include_router(graph.router)
+
+# ---------------------------------------------------------------------------
+# Supplementary endpoints not covered by the sub-routers
+# ---------------------------------------------------------------------------
+
+
+@app.get("/", include_in_schema=False)
+async def root() -> Dict[str, Any]:
+    """Minimal root endpoint — points users to /docs."""
     return {
-        "passage": result.passage,
-        "page": result.page,
-        "line": result.line,
-        "is_superposed": result.is_superposed,
-        "dominant_field": result.dominant_field,
-        "lens_agreement": result.lens_agreement,
-        "entropy_profile": result.entropy_profile,
-        "superposition_analysis": result.superposition_analysis,
-        "n_passes": len(result.pass_results),
+        "name": "WAKE Interpretability API",
+        "version": "0.1.0",
+        "docs": "/docs",
+        "health": "/api/wake/health",
     }
-
-
-# ---------------------------------------------------------------------------
-# Superposition map endpoint
-# ---------------------------------------------------------------------------
 
 
 @app.get(

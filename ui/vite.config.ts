@@ -11,4 +11,17 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    chunkSizeWarningLimit: 2000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-plotly': ['plotly.js', 'react-plotly.js'],
+          'vendor-d3': ['d3'],
+          'vendor-zustand': ['zustand'],
+        },
+      },
+    },
+  },
 })
