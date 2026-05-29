@@ -12,17 +12,28 @@ from __future__ import annotations
 import os
 from typing import Any, Dict, List, Optional, Tuple
 
-import numpy as np
-import torch
+try:
+    import numpy as np
+    _NUMPY_AVAILABLE = True
+except ImportError:
+    _NUMPY_AVAILABLE = False
+    np = None  # type: ignore[assignment]
+
+try:
+    import torch
+    _TORCH_AVAILABLE = True
+except ImportError:
+    _TORCH_AVAILABLE = False
+    torch = None  # type: ignore[assignment]
 
 # TransformerLens is the primary dependency.  We guard the import to allow
 # the module to be imported (and type-checked) in environments where the
 # library is not installed, falling back to a clear ImportError at runtime.
 try:
     from transformer_lens import HookedTransformer  # type: ignore[import]
-    from transformer_lens.utilities import devices  # type: ignore[import]
+    from transformer_lens.utilities import devices  # type: ignore[import]  # noqa: F401
     _TRANSFORMER_LENS_AVAILABLE = True
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     _TRANSFORMER_LENS_AVAILABLE = False
     HookedTransformer = None  # type: ignore[assignment, misc]
 
@@ -79,7 +90,7 @@ class WakeModel:
         model_name: str,
         device: Optional[str] = None,
         hf_token: Optional[str] = None,
-        dtype: torch.dtype = torch.float32,
+        dtype: Any = None,
         **kwargs: Any,
     ) -> "WakeModel":
         """Load a pretrained model from HuggingFace via TransformerLens.
@@ -109,12 +120,24 @@ class WakeModel:
                 "TransformerLens is required.  Install it with: "
                 "pip install transformer-lens"
             )
+        if not _TORCH_AVAILABLE:
+            raise ImportError(
+                "PyTorch is required.  Install it with: pip install torch"
+            )
 
         if device is None:
-            device = "cuda" if torch.cuda.is_available() else "cpu"
+            device = "cuda" if torch.cuda.is_available() else "cpu"  # type: ignore[union-attr]
+
+        # Default dtype to float32 when torch is available
+        if dtype is None:
+            dtype = torch.float32  # type: ignore[union-attr]
 
         # Resolve HuggingFace token
-        token = hf_token or os.environ.get("HF_TOKEN") or os.environ.get("HUGGINGFACE_TOKEN")
+        token = (
+            hf_token
+            or os.environ.get("HF_TOKEN")
+            or os.environ.get("HUGGINGFACE_TOKEN")
+        )
 
         load_kwargs: Dict[str, Any] = {
             "device": device,
