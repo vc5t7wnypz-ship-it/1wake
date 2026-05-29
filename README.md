@@ -22,6 +22,8 @@ experiments/    Jupyter notebooks for research runs
 tests/          Pytest suite
 ```
 
+For a detailed walkthrough of every component — what it does, why it was built that way, and how the parts connect — see **[ARCHITECTURE.md](ARCHITECTURE.md)**.
+
 ## Quick Start
 
 ```bash
