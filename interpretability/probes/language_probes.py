@@ -56,13 +56,27 @@ N_FIELDS: int = len(FIELDS)
 
 @dataclass
 class ProbeResult:
-    """Result from running a :class:`LanguageFieldProbe` on one activation.
+    """Result from running a probe on one activation vector / token position.
+
+    This dataclass supports two usage modes:
+
+    **Mode A — LanguageFieldProbe output** (fitted sklearn ensemble):
+        ``field_scores``, ``top_field``, ``top_score``, ``active_fields``,
+        ``superposition_score``, ``entropy``, ``raw_activation`` are populated.
+        ``layer``, ``position``, ``token``, ``predictions``, ``confidence``
+        are set to defaults.
+
+    **Mode B — raw probe output** (e.g. a single logistic-regression pass or
+    a test stub):
+        ``layer``, ``position``, ``token``, ``predictions``, ``confidence``,
+        ``top_field`` are the primary fields.
+        ``field_scores`` mirrors ``predictions``; the remaining fields are
+        derived automatically.
 
     Attributes
     ----------
     field_scores:
-        Dict mapping each field name to its probability (0–1) as returned by
-        the logistic-regression probe.
+        Dict mapping each field name to its probability (0–1).
     top_field:
         Name of the field with the highest score.
     top_score:
@@ -78,15 +92,74 @@ class ProbeResult:
         indicates genuine superposition.
     raw_activation:
         The input residual-stream vector (optional, can be None to save memory).
+    layer:
+        Transformer layer index (Mode B).
+    position:
+        Token position in the input sequence (Mode B).
+    token:
+        Surface string of the token at *position* (Mode B).
+    predictions:
+        Raw prediction dict mapping field name → probability (Mode B).
+        Mirrors ``field_scores`` when provided.
+    confidence:
+        Confidence of the top prediction (Mode B).
     """
 
-    field_scores: Dict[str, float]
-    top_field: str
-    top_score: float
-    active_fields: List[str]
-    superposition_score: float
-    entropy: float
+    # --- Mode A fields (LanguageFieldProbe) ---
+    field_scores: Dict[str, float] = field(default_factory=dict)
+    top_field: str = ""
+    top_score: float = 0.0
+    active_fields: List[str] = field(default_factory=list)
+    superposition_score: float = 0.0
+    entropy: float = 0.0
     raw_activation: Optional[np.ndarray] = field(default=None, repr=False)
+
+    # --- Mode B fields (direct probe / test stub) ---
+    layer: int = 0
+    position: int = 0
+    token: str = ""
+    predictions: Dict[str, float] = field(default_factory=dict)
+    confidence: float = 0.0
+
+    def __post_init__(self) -> None:
+        """Reconcile Mode A / Mode B fields after construction."""
+        # If predictions provided but field_scores not, mirror them.
+        if self.predictions and not self.field_scores:
+            self.field_scores = dict(self.predictions)
+        # If field_scores provided but predictions not, mirror them.
+        if self.field_scores and not self.predictions:
+            self.predictions = dict(self.field_scores)
+
+        # Ensure top_field / top_score are set.
+        if self.field_scores and not self.top_field:
+            self.top_field = max(self.field_scores, key=self.field_scores.__getitem__)
+            self.top_score = self.field_scores[self.top_field]
+
+        if self.field_scores and self.top_score == 0.0:
+            self.top_score = self.field_scores.get(self.top_field, 0.0)
+
+        # Ensure confidence is set.
+        if self.confidence == 0.0 and self.top_score > 0.0:
+            self.confidence = self.top_score
+
+        # Derive active_fields from field_scores if not set.
+        if not self.active_fields and self.field_scores:
+            self.active_fields = [
+                f for f, p in self.field_scores.items() if p > 0.5
+            ]
+
+        # Derive entropy / superposition_score if not set.
+        if self.entropy == 0.0 and self.field_scores:
+            scores_arr = np.array(list(self.field_scores.values()), dtype=float)
+            total = scores_arr.sum()
+            if total > 0:
+                p = scores_arr / total
+            else:
+                p = np.ones(len(scores_arr)) / max(len(scores_arr), 1)
+            eps = 1e-12
+            self.entropy = float(-np.sum(p * np.log(p + eps)))
+            max_entropy = float(np.log(max(len(scores_arr), 2)))
+            self.superposition_score = 1.0 - (self.entropy / (max_entropy + eps))
 
     # ------------------------------------------------------------------
     # Convenience helpers
