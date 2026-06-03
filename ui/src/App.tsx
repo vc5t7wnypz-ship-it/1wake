@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { usePassageStore } from './store/passageStore'
 import { PassageInput } from './components/PassageInput/PassageInput'
 import { EntropyWaveform } from './components/EntropyWaveform/EntropyWaveform'
@@ -8,6 +8,7 @@ import { GraphExplorer } from './components/GraphExplorer/GraphExplorer'
 import { AnamnesisPanel } from './components/AnamnesisPanel/AnamnesisPanel'
 import { ErrorBanner } from './components/common/ErrorBanner'
 import { LoadingSpinner } from './components/common/LoadingSpinner'
+import { HologramExplainer } from './components/HologramExplainer'
 
 interface PanelProps {
   title: string
@@ -46,8 +47,11 @@ const GlobalLoadingOverlay: React.FC = () => {
   )
 }
 
+type Tab = 'wake' | 'hologram'
+
 const App: React.FC = () => {
   const { error, result, isLoading } = usePassageStore()
+  const [activeTab, setActiveTab] = useState<Tab>('hologram')
 
   return (
     <div className="min-h-screen bg-gray-950 text-gray-100 flex flex-col">
@@ -75,21 +79,58 @@ const App: React.FC = () => {
           {/* Divider */}
           <div className="w-px self-stretch bg-gray-800 flex-shrink-0" />
 
-          {/* Passage input */}
-          <div className="flex-1 min-w-0">
-            <PassageInput />
+          {/* Tab switcher */}
+          <div className="flex gap-1 items-center self-center">
+            {([
+              { id: 'wake', label: 'WAKE · Interpretability' },
+              { id: 'hologram', label: '⬡ Holograms & Physics' },
+            ] as { id: Tab; label: string }[]).map(({ id, label }) => (
+              <button
+                key={id}
+                onClick={() => setActiveTab(id)}
+                className={`
+                  font-mono text-xs px-3 py-1.5 rounded-lg border transition-all cursor-pointer
+                  ${activeTab === id
+                    ? 'bg-sky-900/40 text-sky-300 border-sky-700/60'
+                    : 'bg-gray-900/40 text-gray-500 border-gray-800 hover:border-gray-700 hover:text-gray-400'}
+                `}
+              >
+                {label}
+              </button>
+            ))}
           </div>
+
+          {/* Divider */}
+          <div className="w-px self-stretch bg-gray-800 flex-shrink-0" />
+
+          {/* Passage input (WAKE only) */}
+          {activeTab === 'wake' && (
+            <div className="flex-1 min-w-0">
+              <PassageInput />
+            </div>
+          )}
+          {activeTab === 'hologram' && <div className="flex-1" />}
         </div>
 
         {/* Error banner */}
-        {error && (
+        {error && activeTab === 'wake' && (
           <div className="max-w-screen-2xl mx-auto px-5 pb-3">
             <ErrorBanner message={error} />
           </div>
         )}
       </header>
 
-      {/* ── Main content ────────────────────────────────────────────────────── */}
+      {/* ── Hologram Explorer ───────────────────────────────────────────── */}
+      {activeTab === 'hologram' && (
+        <main className="flex-1 min-h-0">
+          <div className="h-full">
+            <HologramExplainer />
+          </div>
+        </main>
+      )}
+
+      {/* ── WAKE Main content ────────────────────────────────────────────── */}
+      {activeTab === 'wake' && (
       <main className="flex-1 min-h-0 flex flex-col">
         {/* Status bar */}
         {result && !isLoading && (
@@ -158,9 +199,10 @@ const App: React.FC = () => {
           </Panel>
         </div>
       </main>
+      )}
 
-      {/* ── Bottom drawer: Anamnesis ─────────────────────────────────────── */}
-      <AnamnesisPanel />
+      {/* ── Bottom drawer: Anamnesis (WAKE only) ────────────────────────── */}
+      {activeTab === 'wake' && <AnamnesisPanel />}
     </div>
   )
 }
